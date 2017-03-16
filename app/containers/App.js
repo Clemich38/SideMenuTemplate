@@ -19,9 +19,10 @@ const mapStateToProps = (state) => ({
 
 class App extends Component {
 
-    state = {
-      drawerClosed: true,
-    }
+  state = {
+    routes: [0],
+    drawerClosed: true,
+  }
 
   static propTypes = {
     items: PropTypes.array.isRequired,
@@ -35,11 +36,34 @@ class App extends Component {
     }
   }
 
+  navigateTo(routeId) 
+  {
+    // Close the drawer
+    this.drawerElmnt.closeDrawer();
+
+    if (routeId === 0) 
+      this.NAV.resetTo({ id: 0, });
+    else
+      this.NAV.push({ id: routeId, })
+  }
+
+  renderScene(route, navigator) {
+    if (route.id === 0)
+      return <HomePage navigator={navigator} />
+    else if (route.id === 1)
+      return <FirstPage navigator={navigator} />
+  }
+
   render() {
 
     var navigationView = (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>I'm in the Drawer!</Text>
+        <TouchableOpacity onPress={this.navigateTo.bind(this, 0)}>
+          <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>Home Page</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.navigateTo.bind(this, 1)}>
+          <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>First Page</Text>
+        </TouchableOpacity>
       </View>
     );
     
@@ -60,6 +84,10 @@ class App extends Component {
             Toolbar Title
           </Text>
         </Icon.ToolbarAndroid>
+        <Navigator
+          initialRoute={{ id: 0, }}
+          renderScene={this.renderScene}
+          ref={(nav) => { this.NAV = nav; }}/>
       </DrawerLayoutAndroid>
     )
   }
