@@ -128,9 +128,3 @@ const styles = StyleSheet.create({
 })
 
 export default connect(mapStateToProps)(App)
-
-  /*< TouchableOpacity onPress= { this.toggleDrawer } style= { styles.container } >
-    <Header>
-      Super Titre
-          </Header>
-        </TouchableOpacity >*/
