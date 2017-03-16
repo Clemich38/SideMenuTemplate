@@ -40,6 +40,12 @@ class App extends Component {
     }
   }
 
+  setCurrentPageIndex = (index) => {
+    this.setState({
+      currentPageIndex: index
+    });
+  }
+
   setDrawerState = () => {
     this.setState({
       drawerClosed: !this.state.drawerClosed
@@ -55,6 +61,8 @@ class App extends Component {
       this.NAV.resetTo({ id: 0, });
     else
       this.NAV.push({ id: routeId, })
+
+    this.setCurrentPageIndex(routeId)
   }
 
   renderScene(route, navigator) {
@@ -91,7 +99,7 @@ class App extends Component {
           style={styles.toolbar}
           overflowIconName="md-more">
           <Text style={styles.toolbarTitle} numberOfLines={1}>
-            Toolbar Title
+            {pages[this.state.currentPageIndex].title}
           </Text>
         </Icon.ToolbarAndroid>
         <Navigator
