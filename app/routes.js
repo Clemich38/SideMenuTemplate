@@ -1,14 +1,13 @@
-export default {
+import React, { Component, PropTypes } from 'react'
 
-  homePage: {
-    initialRoute: true,
-    title: 'Home Page',
-    component: require('./pages/HomePage').default,
-  },
+// Pages
+import HomePage from './pages/HomePage'
+import FirstPage from './pages/FirstPage'
+import SecondPage from './pages/SecondPage'
 
-  firstPage: {
-    title: 'First Page',
-    component: require('./pages/FirstPage').default
-  },
-
-}
+// Pages routes
+export const pages = [
+  { component: <HomePage navigator={navigator} />, title: 'Home Page', index: 0 },
+  { component: <FirstPage navigator={navigator} />, title: 'First Page', index: 1 },
+  { component: <SecondPage navigator={navigator} />, title: 'Second Page', index: 2 }
+];

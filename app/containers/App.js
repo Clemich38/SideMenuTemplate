@@ -8,6 +8,10 @@ import Header from '../components/Header'
 // Pages
 import HomePage from '../pages/HomePage'
 import FirstPage from '../pages/FirstPage'
+import SecondPage from '../pages/SecondPage'
+
+// routes
+import { pages } from '../routes';
 
 // Redux
 import { actionCreators } from '../redux/appRedux'
@@ -20,7 +24,7 @@ const mapStateToProps = (state) => ({
 class App extends Component {
 
   state = {
-    routes: [0],
+    currentPageIndex: 0,
     drawerClosed: true,
   }
 
@@ -36,6 +40,12 @@ class App extends Component {
     }
   }
 
+  setDrawerState = () => {
+    this.setState({
+      drawerClosed: !this.state.drawerClosed
+    });
+  }
+
   navigateTo(routeId) 
   {
     // Close the drawer
@@ -48,22 +58,20 @@ class App extends Component {
   }
 
   renderScene(route, navigator) {
-    if (route.id === 0)
-      return <HomePage navigator={navigator} />
-    else if (route.id === 1)
-      return <FirstPage navigator={navigator} />
+    return pages[route.id].component
   }
 
   render() {
 
     var navigationView = (
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
-        <TouchableOpacity onPress={this.navigateTo.bind(this, 0)}>
-          <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>Home Page</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.navigateTo.bind(this, 1)}>
-          <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>First Page</Text>
-        </TouchableOpacity>
+        {pages.map((page, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={this.navigateTo.bind(this, page.index)}>
+            <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>{page.title}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     );
     
@@ -72,7 +80,9 @@ class App extends Component {
         ref={(drawerElement) => { this.drawerElmnt = drawerElement; }}
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => navigationView}>
+        renderNavigationView={() => navigationView}
+        onDrawerOpen={this.setDrawerState}
+        onDrawerClose={this.setDrawerState}>
 
         <Icon.ToolbarAndroid
           titleColor='#fff'
