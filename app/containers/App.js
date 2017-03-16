@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, TouchableOpacity, Navigator } from 'react-native'
+import { View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, TouchableOpacity, Navigator, BackAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -52,6 +52,27 @@ class App extends Component {
     });
   }
 
+  handlesBackButton = () => {
+    if (this.state.currentPageIndex !== 0) {
+      try {
+        this.NAV.resetTo({ id: 0, });
+        this.setCurrentPageIndex(0);
+      }
+      catch (e) { }
+
+      return true;
+    }
+    return false;
+  }
+
+  componentWillMount() {
+    BackAndroid.addEventListener('hardwareBackPress', this.handlesBackButton);
+  }
+
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress', this.handlesBackButton);
+  }
+
   navigateTo(routeId) 
   {
     // Close the drawer
@@ -60,7 +81,10 @@ class App extends Component {
     if (routeId === 0) 
       this.NAV.resetTo({ id: 0, });
     else
+    {
+      // this.NAV.resetTo({ id: 0, });
       this.NAV.push({ id: routeId, })
+    }
 
     this.setCurrentPageIndex(routeId)
   }
