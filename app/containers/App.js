@@ -72,7 +72,7 @@ class App extends Component {
   render() {
 
     var navigationView = (
-      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
         {pages.map((page, index) => (
           <TouchableOpacity
             key={index}
@@ -92,6 +92,7 @@ class App extends Component {
         onDrawerOpen={this.setDrawerState}
         onDrawerClose={this.setDrawerState}>
 
+        {/* ToolBar*/}
         <Icon.ToolbarAndroid
           titleColor='#fff'
           navIconName='md-menu'
@@ -102,10 +103,13 @@ class App extends Component {
             {pages[this.state.currentPageIndex].title}
           </Text>
         </Icon.ToolbarAndroid>
+
+        {/* Navigation */}
         <Navigator
           initialRoute={{ id: 0, }}
           renderScene={this.renderScene}
           ref={(nav) => { this.NAV = nav; }}/>
+
       </DrawerLayoutAndroid>
     )
   }
