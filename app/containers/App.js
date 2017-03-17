@@ -81,7 +81,6 @@ class App extends Component {
       this.NAV.resetTo({ id: 0, });
     else
     {
-      // this.NAV.resetTo({ id: 0, });
       this.NAV.push({ id: routeId, })
     }
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, ListView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, ListView, StyleSheet, TouchableOpacity } from 'react-native'
 
 // Row comparison function
 const rowHasChanged = (r1, r2) => r1.id !== r2.id
