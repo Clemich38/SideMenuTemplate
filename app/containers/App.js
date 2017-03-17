@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Image, View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, TouchableOpacity, Navigator, BackAndroid } from 'react-native'
+import { StatusBar, Image, View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, TouchableOpacity, Navigator, BackAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -123,6 +123,7 @@ class App extends Component {
         onDrawerOpen={this.setDrawerState}
         onDrawerClose={this.setDrawerState}>
 
+        <StatusBar backgroundColor='#3a6c96' barStyle="light-content"/>
         {/* ToolBar*/}
         <Icon.ToolbarAndroid
           titleColor='#fff'
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
   },
   toolbar: {
     height: 56,
-    backgroundColor: 'lightsteelblue',
+    backgroundColor: 'steelblue',
     elevation: 2
   },
   toolbarTitle: {
