@@ -17,7 +17,6 @@ class FirstPage extends Component {
         <List list={items}
           onToggle={this.onToggleItemCompleted}
           onRemoveItem={this.onRemoveItem}>
-
         </List>  
       </View>
     )

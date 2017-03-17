@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
   image: {
     width: 300,
     height: 150,
+    opacity: 0.5
   },
   drawerItem: {
     flexDirection: 'row',
