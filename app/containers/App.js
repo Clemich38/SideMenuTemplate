@@ -3,7 +3,6 @@ import { View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, Tou
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
-import Header from '../components/Header'
 
 // Pages
 import HomePage from '../pages/HomePage'
