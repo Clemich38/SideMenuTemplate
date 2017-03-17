@@ -100,13 +100,17 @@ class App extends Component {
           resizeMode='cover'
           source={require('../assets/sakura.png')}
         />
-        {pages.map((page, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={this.navigateTo.bind(this, page.index)}>
-            <Text style={{ margin: 10, fontSize: 15, textAlign: 'left' }}>{page.title}</Text>
-          </TouchableOpacity>
-        ))}
+        <ScrollView style={styles.container}>
+          {pages.map((page, index) => (
+            <TouchableOpacity
+              style={styles.drawerItem} 
+              key={index}
+              onPress={this.navigateTo.bind(this, page.index)}>
+              <Icon name={page.icon} size={20} color="dimgrey" />
+              <Text style={styles.drawerText}>{page.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     );
     
@@ -147,8 +151,21 @@ const styles = StyleSheet.create({
     width: 300,
     height: 150,
   },
+  drawerItem: {
+    flexDirection: 'row',
+    padding: 15,
+    marginTop: 1,
+    marginBottom: 1,
+  },
+  drawerText: {
+    fontSize: 15,
+    textAlign: 'left',
+    flexDirection: 'row',
+    paddingLeft: 30
+  },
   container: {
     flex: 1,
+    paddingTop: 15
   },
   toolbar: {
     height: 56,

@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: 15,
     marginTop: 1,
     marginBottom: 1,
-    backgroundColor: '#eaf1f9',
+    backgroundColor: '#eaeaea',
   },
 
   itemtext: {
