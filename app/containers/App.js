@@ -143,7 +143,10 @@ class App extends Component {
         <Navigator
           initialRoute={{ id: 0, }}
           renderScene={this.renderScene}
-          ref={(nav) => { this.NAV = nav; }}/>
+          ref={(nav) => { this.NAV = nav; }}
+          configureScene={(route, routeStack) =>
+            Navigator.SceneConfigs.FadeAndroid
+          }/>
 
       </DrawerLayoutAndroid>
     )
