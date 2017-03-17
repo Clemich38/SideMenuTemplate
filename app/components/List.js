@@ -1,15 +1,23 @@
 import React, { Component, PropTypes } from 'react'
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, ListView, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 
+// Row comparison function
+const rowHasChanged = (r1, r2) => r1.id !== r2.id
+
+// DataSource template object
+const ds = new ListView.DataSource({ rowHasChanged })
 
 export default class List extends Component {
 
-  renderItem = (item, i) => {
-    const { onToggle } = this.props
 
+  state = {
+    dataSource: ds.cloneWithRows(this.props.list)
+  }
+
+  renderItem = (item) => {
     return (
-      <View style={styles.item} key={i} >
-        <Text style={styles.itemtext} >{item.label}{i}</Text>
+      <View style={styles.item} >
+        <Text style={styles.itemtext} >{item.label}</Text>
       </View>
     )
   }
@@ -17,9 +25,9 @@ export default class List extends Component {
   render() {
     const { list } = this.props
     return (
-      <ScrollView style={styles.container}>
-        {list.map(this.renderItem)}
-      </ScrollView>
+      <ListView style={styles.container}
+                dataSource={this.state.dataSource}
+                renderRow={this.renderItem} />
     )
   }
 }
