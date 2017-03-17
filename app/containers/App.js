@@ -77,14 +77,17 @@ class App extends Component {
     // Close the drawer
     this.drawerElmnt.closeDrawer();
 
-    if (routeId === 0) 
-      this.NAV.resetTo({ id: 0, });
-    else
+    if (routeId !== this.state.currentPageIndex)
     {
-      this.NAV.push({ id: routeId, })
-    }
+      if (routeId === 0) 
+        this.NAV.resetTo({ id: 0, });
+      else
+      {
+        this.NAV.push({ id: routeId, })
+      }
 
-    this.setCurrentPageIndex(routeId)
+      this.setCurrentPageIndex(routeId)
+    }
   }
 
   renderScene(route, navigator) {
