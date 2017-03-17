@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { Image, ScrollView, View, Text, StyleSheet } from 'react-native'
 
 
 export default class HomePage extends Component {
@@ -13,6 +13,10 @@ export default class HomePage extends Component {
         <Text style={styles.body}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent arcu elit, consequat non justo sed, feugiat lobortis magna. Duis rutrum lectus turpis, vitae bibendum sem euismod at. Vivamus eget sem a velit auctor tempus vel ac nunc. Nunc aliquam augue vel ultricies lacinia. Nam ornare diam quis massa placerat, et blandit ex maximus. Donec nec mauris eu eros consectetur sollicitudin. Vivamus eget risus in justo hendrerit posuere. Ut semper dolor sed mauris porta vulputate.
         </Text>
+        <Image
+          style={styles.image}
+          source={require('../assets/sakura.png')}
+        />
         <Text style={styles.body}>
           Morbi in libero body. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus ac aliquet massa. Mauris porttitor varius viverra. Duis posuere dolor et enim ultrices, ut bibendum purus maximus. Mauris feugiat varius erat sit amet maximus. Praesent fermentum nunc at urna posuere egestas. Fusce at leo eu diam feugiat tempus. Nam sollicitudin, magna quis facilisis rutrum, nibh lacus molestie mauris, id ornare eros lorem eu neque. Interdum et malesuada fames ac ante ipsum primis in faucibus.
         </Text>
@@ -45,6 +49,14 @@ const styles = StyleSheet.create({
   body: {
     color: 'dimgrey',
     paddingTop: 15
+  },
+  image: {
+    flex: 1,
+    marginTop: 15,
+    marginBottom: 5,
+    width: 250,
+    borderRadius: 5,
+    alignSelf: 'center'
   }
 
 
