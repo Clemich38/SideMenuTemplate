@@ -27,13 +27,14 @@ export default class SecondPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15
+    // padding: 15,
   },
   image: {
     flex: 1,
-    marginTop: 5,
+    marginTop: 10,
     marginBottom: 5,
     height: 200,
+    borderRadius: 5,
     alignSelf: 'center'
   }
 

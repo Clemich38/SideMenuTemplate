@@ -101,8 +101,9 @@ class App extends Component {
         <Image
           style={styles.image}
           resizeMode='cover'
-          source={require('../assets/sakura.png')}
-        />
+          source={require('../assets/menu.png')}>
+          <Text style={styles.drawerTitleText}>Side Menu Template</Text>
+        </Image>  
         <ScrollView style={styles.container}>
           {pages.map((page, index) => (
             <TouchableOpacity
@@ -156,14 +157,20 @@ class App extends Component {
 const styles = StyleSheet.create({
   image: {
     width: 300,
-    height: 150,
-    opacity: 0.5
+    height: 150
   },
   drawerItem: {
     flexDirection: 'row',
     padding: 15,
     marginTop: 1,
     marginBottom: 1,
+  },
+  drawerTitleText: {
+    fontSize: 25,
+    textAlign: 'left',
+    color: 'white',
+    paddingLeft: 20,
+    top: 100
   },
   drawerText: {
     fontSize: 15,
