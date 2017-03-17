@@ -28,11 +28,7 @@ const initialState = {
           { label: 'List Item n°16', completed: true },
           { label: 'List Item n°17', completed: true },
           { label: 'List Item n°18', completed: true },
-          { label: 'List Item n°19', completed: true },
-          { label: 'List Item n°20', completed: true },
-          { label: 'List Item n°21', completed: true },
-          { label: 'List Item n°22', completed: true },
-          { label: 'List Item n°23', completed: true }],
+          { label: 'List Item n°19', completed: true }],
 }
 
 export const reducer = (state = initialState, action) => {

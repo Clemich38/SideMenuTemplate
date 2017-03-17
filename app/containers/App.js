@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, TouchableOpacity, Navigator, BackAndroid } from 'react-native'
+import { Image, View, ScrollView, StyleSheet, TextInput, Text, DrawerLayoutAndroid, TouchableOpacity, Navigator, BackAndroid } from 'react-native'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -95,6 +95,11 @@ class App extends Component {
 
     var navigationView = (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <Image
+          style={styles.image}
+          resizeMode='cover'
+          source={require('../assets/sakura.png')}
+        />
         {pages.map((page, index) => (
           <TouchableOpacity
             key={index}
@@ -138,6 +143,10 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    width: 300,
+    height: 150,
+  },
   container: {
     flex: 1,
   },
