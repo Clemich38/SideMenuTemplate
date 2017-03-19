@@ -1,15 +1,52 @@
 import React, { Component, PropTypes } from 'react'
-import { Image, ScrollView, View, Text, StyleSheet } from 'react-native'
+import { Image, Navigator, ScrollView, View, Text, StyleSheet, BackAndroid } from 'react-native'
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default class DetailsPage extends Component {
+// Redux
+import { actionCreators } from '../redux/appRedux'
+
+const mapStateToProps = (state) => ({
+  items: state.items,
+  currentPageIndex: state.currentPageIndex,
+})
+
+class DetailsPage extends Component {
+
+  setCurrentPageIndex = (index) => {
+    const { dispatch } = this.props
+    dispatch(actionCreators.setCurrentPage(index));
+  }
+
+  navigateBack() {
+    this.props.navigator.pop()
+    this.setCurrentPageIndex(1)
+  }
+
+  handlesBackButton = () => {
+    try {
+      this.navigateBack(0);
+    }
+    catch (e) { }
+
+    return true;
+  }
+
+  componentWillMount() {
+    BackAndroid.addEventListener('hardwareBackPress', this.handlesBackButton);
+  }
+
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress', this.handlesBackButton);
+  }
 
   render() {
     return (
       <View>
         <Icon.ToolbarAndroid
           titleColor= '#fff'
-          navIconName= 'md-paper-plane'
+          navIconName='md-arrow-back'
+          onIconClicked={this.navigateBack.bind(this)}
           style = { styles.toolbar }
           overflowIconName = "md-more" >
           <Text style={styles.toolbarTitle} numberOfLines={1}>
@@ -72,5 +109,6 @@ const styles = StyleSheet.create({
 
 })
 
+export default connect(mapStateToProps)(DetailsPage)
 
 
