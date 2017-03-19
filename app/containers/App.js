@@ -4,31 +4,24 @@ import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/Ionicons';
 
-// Pages
-import HomePage from '../pages/HomePage'
-import FirstPage from '../pages/FirstPage'
-import SecondPage from '../pages/SecondPage'
-
 // routes
-import { pages } from '../routes';
+import { Navigation, pages } from '../routes';
 
 // Redux
 import { actionCreators } from '../redux/appRedux'
 
 const mapStateToProps = (state) => ({
-  items: state.items,
-  
+  currentPageIndex: state.currentPageIndex,
 })
 
 class App extends Component {
 
   state = {
-    currentPageIndex: 0,
     drawerClosed: true,
   }
 
   static propTypes = {
-    items: PropTypes.array.isRequired,
+    currentPageIndex: PropTypes.number.isRequired,
   }
 
   toggleDrawer = () => {
@@ -40,9 +33,8 @@ class App extends Component {
   }
 
   setCurrentPageIndex = (index) => {
-    this.setState({
-      currentPageIndex: index
-    });
+    const { dispatch } = this.props
+    dispatch(actionCreators.setCurrentPage(index));
   }
 
   setDrawerState = () => {
@@ -91,10 +83,11 @@ class App extends Component {
   }
 
   renderScene(route, navigator) {
-    return pages[route.id].component
+    return Navigation.renderPage(route, navigator);
   }
 
   render() {
+    const { currentPageIndex } = this.props
 
     var navigationView = (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -105,15 +98,20 @@ class App extends Component {
           <Text style={styles.drawerTitleText}>Side Menu Template</Text>
         </Image>  
         <ScrollView style={styles.container}>
-          {pages.map((page, index) => (
-            <TouchableOpacity
-              style={styles.drawerItem} 
-              key={index}
-              onPress={this.navigateTo.bind(this, page.index)}>
-              <Icon name={page.icon} size={20} color="dimgrey" />
-              <Text style={styles.drawerText}>{page.title}</Text>
-            </TouchableOpacity>
-          ))}
+          {pages.map((page, index) => {
+            {
+              if(page.isInMainMenu)
+              {
+                return <TouchableOpacity
+                    style={styles.drawerItem} 
+                    key={index}
+                    onPress={this.navigateTo.bind(this, page.index)}>
+                    <Icon name={page.icon} size={20} color="dimgrey" />
+                    <Text style={styles.drawerText}>{page.title}</Text>
+                  </TouchableOpacity>
+              }
+            }
+          })}
         </ScrollView>
       </View>
     );
@@ -129,16 +127,19 @@ class App extends Component {
 
         <StatusBar backgroundColor='#3a6c96' barStyle="light-content"/>
         {/* ToolBar*/}
-        <Icon.ToolbarAndroid
-          titleColor='#fff'
-          navIconName='md-menu'
-          onIconClicked={this.toggleDrawer}
-          style={styles.toolbar}
-          overflowIconName="md-more">
-          <Text style={styles.toolbarTitle} numberOfLines={1}>
-            {pages[this.state.currentPageIndex].title}
-          </Text>
-        </Icon.ToolbarAndroid>
+        {pages[currentPageIndex].isInMainMenu &&
+          <Icon.ToolbarAndroid
+            titleColor='#fff'
+            navIconName='md-menu'
+            onIconClicked={this.toggleDrawer}
+            style={styles.toolbar}
+            overflowIconName="md-more">
+            <Text style={styles.toolbarTitle} numberOfLines={1}>
+              {pages[currentPageIndex].title}
+            </Text>
+          </Icon.ToolbarAndroid>
+        }
+        
 
         {/* Navigation */}
         <Navigator
