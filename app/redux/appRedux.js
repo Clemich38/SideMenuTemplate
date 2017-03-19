@@ -1,6 +1,7 @@
 const types = {
   ADD_ITEM: 'ADD_ITEM',
   SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
+  SET_ITEM_CLICKED: 'SET_ITEM_CLICKED',
 }
 
 export const actionCreators = {
@@ -9,6 +10,9 @@ export const actionCreators = {
   },
   setCurrentPage: (index) => {
     return { type: types.SET_CURRENT_PAGE, payload: index }
+  },
+  setItemClicked: (index) => {
+    return { type: types.SET_ITEM_CLICKED, payload: index }
   },
 
 }
@@ -34,7 +38,8 @@ const initialState = {
           { label: 'List Item n°18', completed: true },
           { label: 'List Item n°19', completed: true }],
 
-  currentPageIndex: 0
+  currentPageIndex: 0,
+  itemClicked: 0
 }
 
 export const reducer = (state = initialState, action) => {
@@ -52,6 +57,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentPageIndex: payload,
+      }
+    }
+    case types.SET_ITEM_CLICKED: {
+      return {
+        ...state,
+        itemClicked: payload,
       }
     }
     default: {

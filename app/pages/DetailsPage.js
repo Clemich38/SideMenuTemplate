@@ -9,6 +9,7 @@ import { actionCreators } from '../redux/appRedux'
 const mapStateToProps = (state) => ({
   items: state.items,
   currentPageIndex: state.currentPageIndex,
+  itemClicked: state.itemClicked,
 })
 
 class DetailsPage extends Component {
@@ -25,10 +26,9 @@ class DetailsPage extends Component {
 
   handlesBackButton = () => {
     try {
-      this.navigateBack(0);
+      this.navigateBack();
     }
     catch (e) { }
-
     return true;
   }
 
@@ -41,8 +41,9 @@ class DetailsPage extends Component {
   }
 
   render() {
+    const { itemClicked } = this.props
     return (
-      <View>
+      <View style={styles.container}>
         <Icon.ToolbarAndroid
           titleColor= '#fff'
           navIconName='md-arrow-back'
@@ -50,13 +51,13 @@ class DetailsPage extends Component {
           style = { styles.toolbar }
           overflowIconName = "md-more" >
           <Text style={styles.toolbarTitle} numberOfLines={1}>
-            TTTIIITTTLLLEEE
+            Details - {itemClicked}
           </Text>
         </Icon.ToolbarAndroid >
 
         <ScrollView style={styles.container}>
           <Text style={styles.title}>
-            Details
+            Details - Item: {itemClicked}
           </Text>
           <Text style={styles.body}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent arcu elit, consequat non justo sed, feugiat lobortis magna. Duis rutrum lectus turpis, vitae bibendum sem euismod at. Vivamus eget sem a velit auctor tempus vel ac nunc. Nunc aliquam augue vel ultricies lacinia. Nam ornare diam quis massa placerat, et blandit ex maximus. Donec nec mauris eu eros consectetur sollicitudin. Vivamus eget risus in justo hendrerit posuere. Ut semper dolor sed mauris porta vulputate.
@@ -74,7 +75,7 @@ class DetailsPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 25
+    // padding: 25
   },
   toolbar: {
     height: 56,

@@ -32,4 +32,7 @@ export class Navigation {
     else if (route.id === 5)
       return <DetailsPage navigator={navigator} />
   }
+
+
+
 }

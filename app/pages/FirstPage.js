@@ -10,6 +10,7 @@ import { actionCreators } from '../redux/appRedux'
 const mapStateToProps = (state) => ({
   items: state.items,
   currentPageIndex: state.currentPageIndex,
+  itemClicked: state.itemClicked,
 })
 
 class FirstPage extends Component {
@@ -19,9 +20,15 @@ class FirstPage extends Component {
     dispatch(actionCreators.setCurrentPage(index));
   }
 
-  navigateToDetails(routeId) {
+  setItemClicked = (itemIndex) => {
+    const { dispatch } = this.props
+    dispatch(actionCreators.setItemClicked(itemIndex));
+  }
+
+  navigateToDetails(routeId, itemIndex) {
     this.props.navigator.push({ id: routeId, })
     this.setCurrentPageIndex(routeId)
+    this.setItemClicked(itemIndex)
   }
 
   render() {
@@ -30,7 +37,7 @@ class FirstPage extends Component {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={this.navigateToDetails.bind(this, 5)}>
+          onPress={this.navigateToDetails.bind(this, 5, 7)}>
           <Text>click test</Text>
         </TouchableOpacity>
 

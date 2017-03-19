@@ -44,7 +44,8 @@ class App extends Component {
   }
 
   handlesBackButton = () => {
-    if (this.state.currentPageIndex !== 0) {
+
+    if (this.props.currentPageIndex !== 0) {
       try {
         this.NAV.resetTo({ id: 0, });
         this.setCurrentPageIndex(0);
@@ -53,6 +54,7 @@ class App extends Component {
 
       return true;
     }
+    BackAndroid.exitApp();
     return false;
   }
 
@@ -63,6 +65,7 @@ class App extends Component {
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.handlesBackButton);
   }
+
 
   navigateTo(routeId) 
   {
@@ -85,6 +88,7 @@ class App extends Component {
   renderScene(route, navigator) {
     return Navigation.renderPage(route, navigator);
   }
+  
 
   render() {
     const { currentPageIndex } = this.props
@@ -146,8 +150,13 @@ class App extends Component {
           initialRoute={{ id: 0, }}
           renderScene={this.renderScene}
           ref={(nav) => { this.NAV = nav; }}
-          configureScene={(route, routeStack) =>
-            Navigator.SceneConfigs.FadeAndroid
+          configureScene={(route, routeStack) => {
+            if(route.id === 5)
+              return Navigator.SceneConfigs.FloatFromRight
+            else
+              return Navigator.SceneConfigs.FadeAndroid
+          }
+          
           }/>
 
       </DrawerLayoutAndroid>
