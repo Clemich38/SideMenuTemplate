@@ -1,10 +1,14 @@
 const types = {
   ADD_ITEM: 'ADD_ITEM',
+  SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
 }
 
 export const actionCreators = {
   addItem: (item) => {
     return { type: types.ADD_ITEM, payload: item }
+  },
+  setCurrentPage: (index) => {
+    return { type: types.SET_CURRENT_PAGE, payload: index }
   },
 
 }
@@ -29,40 +33,30 @@ const initialState = {
           { label: 'List Item n°17', completed: true },
           { label: 'List Item n°18', completed: true },
           { label: 'List Item n°19', completed: true }],
+
+  currentPageIndex: 0
 }
 
 export const reducer = (state = initialState, action) => {
-  // const { items } = state
-  // const { type, payload } = action
+  const { items } = state
+  const { type, payload } = action
 
-  // switch (type) {
-  //   case types.ADD_ITEM: {
-  //     return {
-  //       ...state,
-  //       items: [{ label: payload, completed: false }, ...items],
-  //     }
-  //   }
-  //   case types.TOGGLE_ITEM_COMPLETED: {
-  //     return {
-  //       ...state,
-  //       items: items.map((item, i) => {
-  //         if (i === payload)
-  //           return { label: item.label, completed: !item.completed };
-  //         else
-  //           return item;
-  //       }),
-  //     }
-  //   }
-  //   case types.REMOVE_ITEM: {
-  //     return {
-  //       ...state,
-  //       items: items.filter((item, i) => i !== payload),
-  //     }
-  //   }
-  //   default: {
-  //     return state
-  //   }
-  // }
+  switch (type) {
+    case types.ADD_ITEM: {
+      return {
+        ...state,
+        items: [{ label: payload, completed: false }, ...items],
+      }
+    }
+    case types.SET_CURRENT_PAGE: {
+      return {
+        ...state,
+        currentPageIndex: payload,
+      }
+    }
+    default: {
+      return state
+    }
+  }
 
-  return state;
 }
