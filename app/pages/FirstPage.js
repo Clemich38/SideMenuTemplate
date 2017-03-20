@@ -25,10 +25,10 @@ class FirstPage extends Component {
     dispatch(actionCreators.setItemClicked(itemIndex));
   }
 
-  navigateToDetails(routeId, itemIndex) {
-    this.props.navigator.push({ id: routeId, })
-    this.setCurrentPageIndex(routeId)
-    this.setItemClicked(itemIndex)
+  navigateToDetails = (index) => {
+    this.props.navigator.push({ id: 5, })
+    this.setCurrentPageIndex(5)
+    this.setItemClicked(index)
   }
 
   render() {
@@ -36,12 +36,8 @@ class FirstPage extends Component {
 
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={this.navigateToDetails.bind(this, 5, 7)}>
-          <Text>click test</Text>
-        </TouchableOpacity>
-
-        <List list={items}>
+        <List list={items}
+              onGotoDetails={this.navigateToDetails}>
         </List>  
       </View>
     )

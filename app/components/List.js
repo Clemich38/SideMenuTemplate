@@ -14,11 +14,12 @@ export default class List extends Component {
     dataSource: ds.cloneWithRows(this.props.list)
   }
 
-  renderItem = (item) => {
+  renderItem = (rowData, sectionID, rowID) => {
+    const { onGotoDetails } = this.props
     return (
-      <View style={styles.item} >
-        <Text style={styles.itemtext} >{item.label}</Text>
-      </View>
+      <TouchableOpacity style={styles.item} onPress={() => onGotoDetails(rowID)}>
+        <Text style={styles.itemtext} >{rowData.label} - {rowID}</Text>
+      </TouchableOpacity>
     )
   }
 
