@@ -17,12 +17,10 @@ export default class Header extends Component {
 }
 
 const styles = StyleSheet.create({
-
   header: {
     padding: 20,
     backgroundColor: 'lightsteelblue',
   },
-
   title: {
     textAlign: 'center',
     color: 'white',

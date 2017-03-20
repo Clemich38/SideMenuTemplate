@@ -10,6 +10,7 @@ import { Navigation, pages } from '../routes';
 // Redux
 import { actionCreators } from '../redux/appRedux'
 
+// Map Redux states to props
 const mapStateToProps = (state) => ({
   currentPageIndex: state.currentPageIndex,
 })
@@ -43,8 +44,8 @@ class App extends Component {
     });
   }
 
+  // Handel hardware back button
   handlesBackButton = () => {
-
     if (this.props.currentPageIndex !== 0) {
       try {
         this.NAV.resetTo({ id: 0, });
@@ -58,15 +59,17 @@ class App extends Component {
     return false;
   }
 
+  // Add Hardware back button listener
   componentWillMount() {
     BackAndroid.addEventListener('hardwareBackPress', this.handlesBackButton);
   }
 
+  // Remove Hardware back button listener
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.handlesBackButton);
   }
 
-
+  // Navigation between main pages
   navigateTo(routeId) 
   {
     // Close the drawer
@@ -85,6 +88,8 @@ class App extends Component {
     }
   }
 
+  // Render page depending on the route id 
+  // (See Navigation class in app/routes.js files)
   renderScene(route, navigator) {
     return Navigation.renderPage(route, navigator);
   }
@@ -93,6 +98,7 @@ class App extends Component {
   render() {
     const { currentPageIndex } = this.props
 
+    // Side drawer navigation menu
     var navigationView = (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <Image
@@ -130,6 +136,7 @@ class App extends Component {
         onDrawerClose={this.setDrawerState}>
 
         <StatusBar backgroundColor='#3a6c96' barStyle="light-content"/>
+
         {/* ToolBar*/}
         {pages[currentPageIndex].isInMainMenu &&
           <Icon.ToolbarAndroid
@@ -144,7 +151,6 @@ class App extends Component {
           </Icon.ToolbarAndroid>
         }
         
-
         {/* Navigation */}
         <Navigator
           initialRoute={{ id: 0, }}
@@ -155,9 +161,7 @@ class App extends Component {
               return Navigator.SceneConfigs.FloatFromBottomAndroid
             else
               return Navigator.SceneConfigs.FadeAndroid
-          }
-          
-          }/>
+          }}/>
 
       </DrawerLayoutAndroid>
     )

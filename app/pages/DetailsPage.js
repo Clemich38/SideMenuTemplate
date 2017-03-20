@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // Redux
 import { actionCreators } from '../redux/appRedux'
 
+// Map Redux states to props
 const mapStateToProps = (state) => ({
   items: state.items,
   currentPageIndex: state.currentPageIndex,
@@ -19,11 +20,13 @@ class DetailsPage extends Component {
     dispatch(actionCreators.setCurrentPage(index));
   }
 
+  // Navigate back to List page
   navigateBack() {
     this.props.navigator.pop()
     this.setCurrentPageIndex(1)
   }
 
+  // Handel hardware back button
   handlesBackButton = () => {
     try {
       this.navigateBack();
@@ -32,10 +35,12 @@ class DetailsPage extends Component {
     return true;
   }
 
+  // Add Hardware back button listener
   componentWillMount() {
     BackAndroid.addEventListener('hardwareBackPress', this.handlesBackButton);
   }
 
+  // Remove Hardware back button listener
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.handlesBackButton);
   }
@@ -44,6 +49,8 @@ class DetailsPage extends Component {
     const { itemClicked } = this.props
     return (
       <View style={styles.container}>
+
+        {/* ToolBar */}
         <Icon.ToolbarAndroid
           titleColor= '#fff'
           navIconName='md-arrow-back'
@@ -55,6 +62,7 @@ class DetailsPage extends Component {
           </Text>
         </Icon.ToolbarAndroid >
 
+        {/* View */}
         <ScrollView style={styles.container}>
           <Text style={styles.title}>
             Details - Item: {itemClicked}
@@ -75,7 +83,6 @@ class DetailsPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 25
   },
   toolbar: {
     height: 56,

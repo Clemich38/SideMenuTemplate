@@ -26,9 +26,6 @@ export default class HomePage extends Component {
         <Text style={styles.body}>
           Sed tristique gravida neque ac consequat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut arcu ligula, ornare in fringilla nec, pharetra ac erat. Vivamus et erat sit amet mauris laoreet tincidunt at ut nisl. Aliquam pulvinar, odio a rhoncus rutrum, ipsum metus ornare nulla, a molestie enim diam nec urna. Nulla sollicitudin, nibh vitae fermentum tempus, neque libero sagittis felis, eget viverra dolor lectus et ex. Mauris sit amet nisi lacinia, efficitur sem vitae, finibus quam. Aliquam in ante eu odio pretium pretium eget et erat. Phasellus nisi massa, placerat sit amet commodo eu, volutpat vel lectus. Etiam augue nisl, fringilla a euismod et, lacinia id nisi. Proin nec scelerisque turpis.
         </Text>
-        <Text style={styles.body}>
-          In at eros mauris. Nulla aliquet bibendum sem. In ac ante ut nibh sagittis dictum eu sit amet odio. Ut eleifend id urna ullamcorper finibus. Sed enim lorem, porttitor et diam et, mollis suscipit leo. Cras quis lacinia purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat tincidunt laoreet. Ut volutpat, sem ac eleifend dapibus, magna urna laoreet nibh, eget faucibus lorem eros nec urna. Duis sed tortor nec ligula condimentum semper.
-        </Text>
       </ScrollView>
     )
   }
@@ -58,8 +55,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: 'center'
   }
-
-
 })
 
 

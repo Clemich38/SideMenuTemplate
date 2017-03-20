@@ -7,9 +7,9 @@ import App from './containers/App'
 
 // Import the reducer and create a store
 import { reducer } from './redux/appRedux'
-const store = createStore(reducer)
+// const store = createStore(reducer)
 
-// const store = configureStore()
+const store = configureStore()
 
 export default class extends Component {
   render() {

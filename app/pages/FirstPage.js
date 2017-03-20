@@ -7,6 +7,7 @@ import DetailsPage from '../pages/DetailsPage'
 // Redux
 import { actionCreators } from '../redux/appRedux'
 
+// Map Redux states to props
 const mapStateToProps = (state) => ({
   items: state.items,
   currentPageIndex: state.currentPageIndex,
@@ -20,11 +21,13 @@ class FirstPage extends Component {
     dispatch(actionCreators.setCurrentPage(index));
   }
 
+  // Set clicked item value to display it on the DetailsPage
   setItemClicked = (itemIndex) => {
     const { dispatch } = this.props
     dispatch(actionCreators.setItemClicked(itemIndex));
   }
 
+  // Navigate to DetailsPage
   navigateToDetails = (index) => {
     this.props.navigator.push({ id: 5, })
     this.setCurrentPageIndex(5)
@@ -48,8 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
-
 })
 
 export default connect(mapStateToProps)(FirstPage)

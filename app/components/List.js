@@ -9,7 +9,6 @@ const ds = new ListView.DataSource({ rowHasChanged })
 
 export default class List extends Component {
 
-
   state = {
     dataSource: ds.cloneWithRows(this.props.list)
   }
@@ -17,7 +16,8 @@ export default class List extends Component {
   renderItem = (rowData, sectionID, rowID) => {
     const { onGotoDetails } = this.props
     return (
-      <TouchableOpacity style={styles.item} onPress={() => onGotoDetails(rowID)}>
+      <TouchableOpacity style={styles.item} 
+                        onPress={() => onGotoDetails(rowID)}>
         <Text style={styles.itemtext} >{rowData.label} - {rowID}</Text>
       </TouchableOpacity>
     )
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -47,11 +46,9 @@ const styles = StyleSheet.create({
     marginBottom: 1,
     backgroundColor: '#eaeaea',
   },
-
   itemtext: {
     color: 'lightslategrey',
   },
-
   rightSection: {
     flexDirection: 'row',
     alignItems: 'center',
