@@ -152,7 +152,7 @@ class App extends Component {
           ref={(nav) => { this.NAV = nav; }}
           configureScene={(route, routeStack) => {
             if(route.id === 5)
-              return Navigator.SceneConfigs.FloatFromRight
+              return Navigator.SceneConfigs.FloatFromBottomAndroid
             else
               return Navigator.SceneConfigs.FadeAndroid
           }

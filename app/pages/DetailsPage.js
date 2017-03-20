@@ -64,7 +64,7 @@ class DetailsPage extends Component {
           </Text>
           <Image
             style={styles.image}
-            source={require('../assets/sakura.png')}
+            source={require('../assets/matsu.png')}
           />
         </ScrollView>
       </View>
