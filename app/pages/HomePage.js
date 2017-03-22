@@ -34,7 +34,8 @@ export default class HomePage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 25
+    paddingLeft: 25,
+    paddingRight: 25,
   },
   title: {
     color: 'dimgrey',

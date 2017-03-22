@@ -48,7 +48,7 @@ class DetailsPage extends Component {
   render() {
     const { itemClicked } = this.props
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
 
         {/* ToolBar */}
         <Icon.ToolbarAndroid
@@ -81,8 +81,13 @@ class DetailsPage extends Component {
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
+    paddingLeft: 25,
+    paddingRight: 25,
   },
   toolbar: {
     height: 56,
